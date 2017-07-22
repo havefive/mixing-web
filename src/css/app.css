@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+body{
+    background: #f0f0f0;
+}
+
+div+div{
+    margin:10px;
+}

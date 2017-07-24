@@ -1,17 +1,27 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+function getEntry() {
+    var jsPath = path.resolve('./src', '');
+    var dirs = fs.readdirSync(jsPath);
+    var matchs = [], files = {};
+    dirs.forEach(function (item) {
+        matchs = item.match(/(.+)\.js$/);
+        if (matchs) {
+            files[matchs[1]] = path.resolve('./src', '', item);
+        }
+    });
+    return files;
+}
 
 module.exports = {
     context: path.resolve(__dirname, './src'),
     node: {
         fs: 'empty'
     },
-    entry: {
-        app: './app.js',
-        vue: './vue.js',
-        react: './react.js',
-    },
+    entry: getEntry(),
     output: {
         path: path.resolve(__dirname, './dist/js'),
         filename: '[name].min.js',

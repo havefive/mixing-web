@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function getEntry() {
     var jsPath = path.resolve('./src', '');
@@ -84,7 +85,11 @@ module.exports = {
                 NODE_ENV: '"production"'
             }
         }),
-        new webpack.optimize.ModuleConcatenationPlugin()
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new CopyWebpackPlugin([
+            // {output}/to/file.txt
+            { from: './**.html', to: '../' }]
+            ),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, './src'),  // New

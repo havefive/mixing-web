@@ -26,7 +26,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist/js'),
         filename: '[name].min.js',
-        publicPath: '/js'
+        publicPath: '/static'
     },
     module: {
         rules: [
@@ -79,7 +79,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('../css/app.css'),
+        new ExtractTextPlugin({filename:'../css/app.css'}),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'

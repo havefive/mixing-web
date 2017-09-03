@@ -30,15 +30,16 @@ module.exports = {
     publicPath: '/static'
   },
   module: {
-    rules: [{
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-        enforce: 'pre',
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+    rules: [
+        // {
+        // test: /\.(js|vue)$/,
+        // loader: 'eslint-loader',
+        // exclude: /node_modules/,
+        // enforce: 'pre',
+        // options: {
+        //   formatter: require('eslint-friendly-formatter')
+        // }
+      // },
       {
         test: /\.css$/,
         use: 'css-loader',

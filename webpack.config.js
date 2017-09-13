@@ -3,6 +3,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 function getEntry() {
   var jsPath = path.resolve('./src', '');
@@ -89,6 +90,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new StyleLintPlugin({config:{
+        rules: {
+            'selector-pseudo-class-no-unknown': null,
+            'unit-whitelist': ['px', 'deg', '%', 'em', 'ms'],
+            'length-zero-no-unit': null,
+          },
+          ignoreFiles: './node_modules/**/*.css',
+    }}),
     new ExtractTextPlugin({ filename: 'css/app.css' }),
     new webpack.DefinePlugin({
       'process.env': {
